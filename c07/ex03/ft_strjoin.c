@@ -1,56 +1,52 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asimoes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/20 08:42:54 by asimoes-          #+#    #+#             */
-/*   Updated: 2022/07/21 05:01:35 by asimoes-         ###   ########lyon.fr   */
+/*   Created: 2022/07/21 06:33:53 by asimoes-          #+#    #+#             */
+/*   Updated: 2022/07/21 14:16:04 by asimoes-         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-
-int	ft_strlen(char *str)
+int	ft_strlen(char *dest)
 {
 	int	i;
 
-	i = 0;
-	while(str[i])
+	while (dest[i])
 		i++;
 	return (i);
 }
 
-int	*malloc1(int size)
-{
-	int	*tab;
-
-	tab = malloc(sizeof(*tab) * size);
-	return (tab);
-}
-
-char	*ft_strcpy(char *dest, char *src)
+char	*ft_strcat(char *dest, char *src)
 {
 	int	i;
+	int	dlen;
 
 	i = 0;
+	dlen = ft_strlen(dest);
 	while (src[i])
 	{
-		dest[i] = src[i];
+		dest[dlen + i] = src[i];
 		i++;
 	}
-	dest[i] = '\0';
+	if ()
+	dest[dlen + i] = ' ';
 	return (dest);
 }
 
-char	*ft_strdup(char *src)
+ char	*ft_strjoin(int size, char **strs, char *sep)
 {
-	int	*cpy;
-	int	size;
-
-	size = ft_strlen(src);
-	cpy = malloc1(size);
-	ft_strcpy(cpy, src);
-	return (cpy);
+	char	*tab;
+i
+	tab = malloc(sizeof(*tab) * 0);
+	if (size = 0)
+		return (tab);
+	while (strs[i])
+	{
+		ft_strcat(sep, strs[i]);
+		i++;
+	}
+	return (sep);
 }
