@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: asimoes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/19 08:48:39 by asimoes-          #+#    #+#             */
-/*   Updated: 2022/07/19 09:55:10 by asimoes-         ###   ########lyon.fr   */
+/*   Created: 2022/07/27 13:49:18 by asimoes-          #+#    #+#             */
+/*   Updated: 2022/07/27 14:11:34 by asimoes-         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,58 @@ void	ft_putchar(char c)
 	write(1, &c, 1);
 }
 
-void	ft_putnbr(int nb)
+int	ft_strlen(char *str)
 {
-	if (nb == (-2147483648))
+	int	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}
+
+int	ft_error(int len, char *base)
+{
+	int	i;
+	int	j;
+
+	j = 0;
+	i = 0;
+	if (len == 0 || len == 1)
+		return (1);
+	while (base[i])
 	{
-		write(1, "-2147483648", 11);
-		return ;
+		j = i + 1;
+		while (base[j])
+		{
+			if (base[i] == base[j] || base[i] == '+' || base[i] == '-')
+				return (1);
+			j++;
+		}
+		i++;
 	}
-	else if (nb >= 0 && nb <= 9)
-		ft_putchar(nb + '0');
-	else if (nb < 0)
+	return (0);
+}
+
+void	ft_putnbr_base(int nbr, char *base)
+{
+	int			len;
+	long int	n;
+
+	n = (long int)nbr;
+	len = ft_strlen(base);
+	if (ft_error(len, base) == 1)
+		return ;
+	if (n >= 0 && n < len)
+		ft_putchar(base[n]);
+	else if (n < 0)
 	{
 		ft_putchar('-');
-		ft_putnbr(nb * (-1));
+		ft_putnbr_base((n * (-1)), base);
 	}
-	else if (nb >= 10)
+	else if (n >= len)
 	{
-		ft_putnbr(nb / 10);
-		ft_putnbr(nb % 10);
+		ft_putnbr_base((n / len), base);
+		ft_putnbr_base((n % len), base);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: asimoes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 05:20:29 by asimoes-          #+#    #+#             */
-/*   Updated: 2022/07/20 05:29:17 by asimoes-         ###   ########lyon.fr   */
+/*   Updated: 2022/07/28 15:13:08 by asimoes-         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 
 int	main(int argc, char **argv)
 {
-	int	i;
+	int		i;
+	char	c;
 
+	c = '\n';
 	i = 0;
 	if (argc >= 0)
 	{
@@ -24,6 +26,7 @@ int	main(int argc, char **argv)
 			write(1, &argv[0][i], 1);
 			i++;
 		}
+		write(1, &c, 1);
 	}
 	return (0);
 }

@@ -6,15 +6,20 @@
 /*   By: asimoes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 18:27:34 by asimoes-          #+#    #+#             */
-/*   Updated: 2022/07/18 19:22:10 by asimoes-         ###   ########lyon.fr   */
+/*   Updated: 2022/07/27 20:52:32 by asimoes-         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <unistd.h>
 
 void	ft_putstr(char *str)
 {
 	int	i;
 
 	i = 0;
-	while (str[i++])
+	while (str[i])
+	{
 		write(1, &str[i], 1);
+		i++;
+	}
 }

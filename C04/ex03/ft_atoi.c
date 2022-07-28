@@ -6,11 +6,9 @@
 /*   By: asimoes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 23:30:17 by asimoes-          #+#    #+#             */
-/*   Updated: 2022/07/19 08:47:21 by asimoes-         ###   ########lyon.fr   */
+/*   Updated: 2022/07/28 00:50:33 by asimoes-         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <unistd.h>
 
 int	ft_atoi(char *str)
 {
@@ -21,7 +19,7 @@ int	ft_atoi(char *str)
 	nb = 0;
 	negative = 1;
 	i = 0;
-	while (str[i] >= 8 && str[i] <= 12 || str[i] == ' ')
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == ' ')
 	{
 		i++;
 	}

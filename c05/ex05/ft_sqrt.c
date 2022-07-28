@@ -6,22 +6,20 @@
 /*   By: asimoes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 01:06:07 by asimoes-          #+#    #+#             */
-/*   Updated: 2022/07/20 03:21:33 by asimoes-         ###   ########lyon.fr   */
+/*   Updated: 2022/07/28 12:32:52 by asimoes-         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_sqrt(int nb)
 {
-	int	i;
-	int	nbsqrt;
+	long int	i;
 
-	i = 0;
-	while (i < nb)
-	{
-		nbsqrt = i * i;
-		if (nbsqrt == nb)
-			return (i);
+	i = 1;
+	if (nb == 0 || nb == 2)
+		return (0);
+	while (i * i < nb)
 		i++;
-	}
+	if (nb == i * i)
+		return (i);
 	return (0);
 }
