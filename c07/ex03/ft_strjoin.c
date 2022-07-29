@@ -6,47 +6,67 @@
 /*   By: asimoes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 06:33:53 by asimoes-          #+#    #+#             */
-/*   Updated: 2022/07/21 14:16:04 by asimoes-         ###   ########lyon.fr   */
+/*   Updated: 2022/07/29 00:32:26 by asimoes-         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_strlen(char *dest)
+#include <stdlib.h>
+
+int	ft_strlen(char *strs)
 {
 	int	i;
 
-	while (dest[i])
+	i = 0;
+	while (strs[i])
 		i++;
 	return (i);
 }
 
-char	*ft_strcat(char *dest, char *src)
+char	*fullsize(int size, char **strs, char *sep, char *result)
 {
 	int	i;
-	int	dlen;
+	int	k;
+	int	j;
 
-	i = 0;
-	dlen = ft_strlen(dest);
-	while (src[i])
+	i = -1;
+	k = 0;
+	while (++i < size)
 	{
-		dest[dlen + i] = src[i];
-		i++;
+		j = 0;
+		while (strs[i][j])
+			result[k++] = strs[i][j++];
+		if (i != size - 1)
+		{
+			j = 0;
+			while (sep[j])
+				result[k++] = sep[j++];
+		}
 	}
-	if ()
-	dest[dlen + i] = ' ';
-	return (dest);
+	result[k] = '\0';
+	return (result);
 }
 
- char	*ft_strjoin(int size, char **strs, char *sep)
+char	*ft_strjoin(int size, char **strs, char *sep)
 {
+	int		i;
 	char	*tab;
-i
-	tab = malloc(sizeof(*tab) * 0);
-	if (size = 0)
-		return (tab);
-	while (strs[i])
+	int		total_size;
+
+	i = 0;
+	total_size = 0;
+	if (size == 0)
 	{
-		ft_strcat(sep, strs[i]);
+		tab = (char *) malloc(sizeof(char));
+		tab[0] = '\0';
+		return (tab);
+	}
+	while (i < size)
+	{
+		total_size += ft_strlen(strs[i]);
 		i++;
 	}
-	return (sep);
+	tab = (char *) malloc(sizeof(char)
+			* (total_size + ft_strlen(sep) * (size - 1) + 1));
+	tab = fullsize(size, strs, sep, tab);
+	return (tab);
 }

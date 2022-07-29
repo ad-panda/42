@@ -6,33 +6,31 @@
 /*   By: asimoes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 06:04:25 by asimoes-          #+#    #+#             */
-/*   Updated: 2022/07/21 06:31:42 by asimoes-         ###   ########lyon.fr   */
+/*   Updated: 2022/07/29 00:31:30 by asimoes-         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-int	*ft_range(int **range, int min, int max)
+int	ft_ultimate_range(int **range, int min, int max)
 {
 	int	*tab;
 	int	i;
-	int	size;
 
-	i = 0;
-	size = max - min;
 	if (min >= max)
 	{
-		tab = NULL;
+		*range = NULL;
 		return (0);
 	}
-	if (!(tab = malloc(sizeof(*tab) * size)))
+	tab = malloc(sizeof(*tab) * (max - min));
+	if (tab == NULL)
 		return (-1);
-	while (min < max)
+	else
 	{
-		tab[i] = min;
-		i++;
-		min++;
+		i = -1;
+		while (++i < max - min)
+			tab[i] = min + i;
+		*range = tab;
+		return (i);
 	}
-	*range = tab;
-	return (i);
 }

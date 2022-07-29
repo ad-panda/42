@@ -6,51 +6,32 @@
 /*   By: asimoes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 08:42:54 by asimoes-          #+#    #+#             */
-/*   Updated: 2022/07/21 05:01:35 by asimoes-         ###   ########lyon.fr   */
+/*   Updated: 2022/07/29 00:29:55 by asimoes-         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-int	ft_strlen(char *str)
+char	*ft_strdup(char *src)
 {
-	int	i;
-
-	i = 0;
-	while(str[i])
-		i++;
-	return (i);
-}
-
-int	*malloc1(int size)
-{
-	int	*tab;
-
-	tab = malloc(sizeof(*tab) * size);
-	return (tab);
-}
-
-char	*ft_strcpy(char *dest, char *src)
-{
-	int	i;
+	char	*dest;
+	int		i;
 
 	i = 0;
 	while (src[i])
-	{
-		dest[i] = src[i];
 		i++;
-	}
+	dest = malloc(sizeof(src) * i + 1);
+	i = 0;
+	if (dest == NULL)
+		return (0);
+	else
+	{
+		while (src[i])
+		{
+			dest[i] = src[i];
+			i++;
+		}
 	dest[i] = '\0';
-	return (dest);
-}
-
-char	*ft_strdup(char *src)
-{
-	int	*cpy;
-	int	size;
-
-	size = ft_strlen(src);
-	cpy = malloc1(size);
-	ft_strcpy(cpy, src);
-	return (cpy);
+		return (dest);
+	}
 }
