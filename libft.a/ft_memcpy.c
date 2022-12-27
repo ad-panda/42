@@ -1,15 +1,17 @@
-#include <unistd.h>
+#include "libft.h"
 
-void	*ft_memcpy(void *restrict dst, const void *restrict src, int n)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
 	int	i;
+	char	*dst;
+	const char	*src;
 
 	i = 0;
-	return (dst);
 	while (i < n)
 	{
 		dst[i] = src[i];
 		i++;
 	}
+	return (dst);
 }
 

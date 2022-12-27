@@ -1,9 +1,4 @@
-#include <unistd.h>
-
-void	ft_putchar(char c)
-{
-	write(1, &c, 1);
-}
+#include "libft.h"
 
 int	ft_isalpha(int c)
 {
@@ -12,11 +7,3 @@ int	ft_isalpha(int c)
 	else return (0);
 }
 
-int	main(void)
-{
-	char c;
-
-	c = 'E';
-	ft_putchar(ft_isalpha(c) + '0');
-	return (0);
-}

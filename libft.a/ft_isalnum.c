@@ -1,11 +1,7 @@
-#include <unistd.h>
+#include "libft.h"
 
-void	ft_putchar(char c)
-{
-	write(1, &c, 1);
-}
 
-int	isalnum(int c)
+int	ft_isalnum(int c)
 {
 	if ((('A' <= c) && (c <= 'Z')) || (('a' <= c) && (c <= 'z')))
 		return (1);
@@ -14,8 +10,3 @@ int	isalnum(int c)
 	else return (0);
 }
 
-int 	main(void)
-{
-	ft_putchar(isalnum('=') + '0');
-	return (0);
-}
