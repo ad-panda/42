@@ -1,19 +1,10 @@
-#include <unistd.h>
+#include "libft.h"
 
 void	ft_putchar(char c)
 {
 	write(1, &c, 1);
 }
 
-int	ft_strlen(char *str)
-{
-	int	len;
-
-	len = 0;
-	while(str[len])
-		len ++;
-	return(len);
-}
 
 unsigned int	ft_strlcat(char *dest, char *src, unsigned int size)
 {

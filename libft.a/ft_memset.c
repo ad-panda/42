@@ -1,7 +1,17 @@
-#include <unistd.h>
+#include "libft.h"
 
-void	*memset(void *str, int c, int len)
+void	*ft_memset(void *b, int c, size_t len)
 {
-	str[len] = c + '0';
-	return (str)
+	int	i;
+	unsigned char	*str;
+
+	i = 0;
+	str = b;
+	while (str[i] || len >= 0)
+	{
+		str[i] = (unsigned char)c;
+		i++;
+		len--;
+	}
+	return (b);
 }

@@ -1,48 +1,41 @@
-#include <unistd.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: asimoes- <asimoes-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/10 17:29:22 by asimoes-          #+#    #+#             */
+/*   Updated: 2023/01/10 17:33:11 by asimoes-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void	ft_putchar(char c)
-{
-	write(1, &c, 1);
-}
+#include "libft.h"
 
-int	ft_atoi(char *tab)
+int	ft_atoi(const char *str)
 {
-	int	a;
 	int	i;
+	int	negative;
 	int	nb;
 
-	i = 0;
-	a = 1;
 	nb = 0;
-
-	while (tab[i] == ' ')
-	i++;
-	while (tab[i] == '-' || tab[i] == '+')
+	negative = 1;
+	i = 0;
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == ' ')
 	{
-		if (tab[i] == '-')
-		a *= -1;
 		i++;
 	}
-	while ((tab[i] >= 'a' && tab[i] <= 'z') || (tab[i] >= 'A' && tab[i] <= 'Z'))
-	i++;
-	if (tab[i] >= '0' && tab[i] <= '9')
-	nb += tab[i] - '0';
-	nb *= a;
-  
-	return (nb);
-}
-
-
-int	main(int argc, char **argv)
-{
-	int a;
-
-	a = ft_atoi(argv[1]);
-	if (a < 0)
+	while (str[i] == 45 || str[i] == 43)
 	{
-		ft_putchar('-');
-		a *= -1;
+		if (str[i] == '-')
+			negative *= (-1);
+		i++;
 	}
-	ft_putchar(a + '0');
-	return (0);
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		nb *= 10;
+		nb += (str[i] - '0');
+		i++;
+	}
+	return (nb * negative);
 }

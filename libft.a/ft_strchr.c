@@ -1,11 +1,11 @@
-#include <unistd.h>
+#include "libft.h"
 
 
 char	*strchr(const char *s, int c)
 {
 	int	i;
 	char C;
-	char *n = NULL;
+	char n[] = NULL;
 
 	i = 0;
 	C = c + '0';
@@ -16,5 +16,5 @@ char	*strchr(const char *s, int c)
 	else 
 		i++;
 	}
-	return (*n);
+	return (n);
 }

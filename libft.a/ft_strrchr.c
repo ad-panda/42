@@ -1,15 +1,4 @@
-#include <unistd.h>
-
-int     ft_strlen(char *s)
-{
-        int     i;
-
-        i = 0;
-        while (s[i])
-        i ++;
-
-        return (i);
-}
+#include "libft.h"
 
 char    *strrchr(const char *s, int c)
 {
@@ -26,6 +15,6 @@ char    *strrchr(const char *s, int c)
         else    
                 len--;
         }
-        return (*n);
+        return (n);
 }
 ~             

@@ -1,34 +1,11 @@
-#include <unistd.h>
+#include "libft.h"
 
-void	ft_putchar(char c)
+size_t	ft_strlen(char *str)
 {
-	write(1, &c, 1);
-}
-
-int	ft_strlen(char *str)
-{
-	int	len;
+	size_t	len;
 
 	len = 0;
 	while(str[len])
 		len++;
 	return (len);
-}
-
-int	main(int argc, char **argv)
-{
-	int	len;
-	int	i;
-
-	i = 0;
-	len = 0;
-	len = ft_strlen(argv[1]);
-	ft_putchar(len + '0');
-	ft_putchar('\n');
-	while(i < len)
-	{
-		ft_putchar(argv[1][i]);
-		i++;
-	}
-	return(0);
 }

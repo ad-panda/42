@@ -1,4 +1,4 @@
-#include <unistd.h>
+#include "libft.h"
 
 int	ft_tolower(int c)
 {
@@ -7,4 +7,3 @@ int	ft_tolower(int c)
 
 	return (c);
 }
-
