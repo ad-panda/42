@@ -1,46 +1,38 @@
 #include "libft.h"
 
+static	char	*ft_strcat(char *dst, char *src)
+{
+	int	i;
+
+	i = 0;
+	while (src[i])
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	dst[i] = '\0';
+	return (dst);
+}
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	int	i;
-	int 	len;
-	char	*s3 = NULL;
+	int	ls3;
+	int	j;
+	size_t	len;
+	char	*s3;
 
-	i = 0;
-	len = (ft_strlen(s1) + ft_strlen(s2));
-	if ((s3 = (char *)malloc(sizeof(char) * len)) == NULL)
+	j = 0;
+	len = (ft_strlen((char *)s1) + ft_strlen((char *)s2) + 1);
+	if ((s3 = malloc(len)) == NULL)
 		return (NULL);
-	if (s1[i] == NULL && s2[i] == NULL)
-		return (NULL);
-	if (s1[i] == NULL && s2[i] != NULL)
-		while (s2[i])
-			{
-				s3[i] = s2[i];
-				i++;
-			}
-	i = 0;
-	if (s1[i] != NULL && s2[i] == NULL)
-                while (s1[i])
-                        {
-                                s3[i] = s1[i];
-                                i++;
-                        }
-	i = 0;
-	if (s1[i] != NULL && s2[i] != NULL)
-		{
-			while (s1[i])
-                        	{
-                                	s3[j] = s1[i];
-                                	i++;
-					j++;
-                        	}
-			while (s2[i])
-                                {
-                                        s3[j] = s2[i];
-                                        i++;
-					j++;
-                                }
-		}
+	s3 = ft_strcat(s3, (char *)s1);
+	ls3 = ft_strlen(s3);
+	while (s2[j])
+	{
+		s3[ls3] = s2[j];
+		ls3++;
+		j++;
+	}
+	s3[ls3] = '\0';
 	return (s3);
 }

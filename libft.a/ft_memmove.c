@@ -1,14 +1,50 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: asimoes- <asimoes-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/30 13:02:28 by asimoes-          #+#    #+#             */
+/*   Updated: 2023/01/30 13:36:02 by asimoes-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-void	*memmove(void *dst, const void *src, size_t len)
+static	void    *ft_memcpy2(void *dst, const void *src, size_t n)
 {
-	char src;
+    size_t    i;
+    size_t  len;
+    unsigned char    *str;
+    unsigned char    *str2;
 
-	return (dst);
+    i = 0;
+    str = (unsigned char*)dst;
+    str2 = (unsigned char*)src;
+    if (str == NULL && str2 == NULL)
+        return (dst);
+    len = n - 1;
+    while (i < n)
+    {
+        str[len] = str2[len];
+        n--;
+        len--;
+        
+    }
+    return (dst);
+}
 
-	while (i < len)
-	{
-		dst[i] = src[i];
-		i++;
-	}
+void    *ft_memmove(void *dst, const void *src, size_t len)
+{
+	//unsigned char	*str;
+	//unsigned char	*str2;
+
+	//str = (unsigned char *)dst;
+	//str2 = (unsigned char *)src;
+	//if (dst == NULL && src == NULL)
+	//	return (dst);
+	if (dst < src)
+		return (ft_memcpy(dst, src, len));
+	return (ft_memcpy2(dst, src, len));
 }

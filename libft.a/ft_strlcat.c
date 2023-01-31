@@ -1,44 +1,25 @@
 #include "libft.h"
 
-void	ft_putchar(char c)
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	write(1, &c, 1);
-}
-
-
-unsigned int	ft_strlcat(char *dest, char *src, unsigned int size)
-{
-	int	i;
-	int	j;
-	int	len;
-	int	lendest;
+	unsigned int	i;
+	size_t	lendst;
+	size_t	lensrc;
+	char	*str;
 
 	i = 0;
-	j = 0;
-	len = ft_strlen(src);
-	lendest = ft_strlen(dest);
-
-	while(size > i)
+	str = (char *)src;
+	lendst = ft_strlen(dst);
+	lensrc = ft_strlen(str);
+	if (dstsize == 0)
+		return (lendst + lensrc);
+	if (dstsize < lendst)
+		return (lendst);
+	while(i < dstsize)
 	{
-		dest[lendest + i] = src[i];
-		i ++;
+		dst[lendst + i] = src[i];
+		i++;
 	}
-	dest[lendest + i] = '\0';
-	while(dest[j])
-        {
-                ft_putchar(dest[j++]);
-        }
-	return(len);
-}
-
-int	main(int argc, char **argv)
-{
-	unsigned int	size;
-	unsigned int	len;
-	char nb;
-
-	nb = argv[3][0] - '0';
-	size = nb;
-	len = ft_strlcat(argv[1], argv[2], size);
-	return (0);
+	dst[lendst + i] = '\0';
+	return(lendst + lensrc);
 }

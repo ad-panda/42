@@ -6,7 +6,7 @@
 /*   By: asimoes- <asimoes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 17:29:22 by asimoes-          #+#    #+#             */
-/*   Updated: 2023/01/10 17:33:11 by asimoes-         ###   ########.fr       */
+/*   Updated: 2023/01/23 21:44:15 by asimoes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,15 @@ int	ft_atoi(const char *str)
 	nb = 0;
 	negative = 1;
 	i = 0;
+	if (str[i] )
 	while ((str[i] >= 9 && str[i] <= 13) || str[i] == ' ')
 	{
 		i++;
 	}
 	while (str[i] == 45 || str[i] == 43)
 	{
+		if (str[i+1] == 45 || str[i+1] == 43)
+			return (0);
 		if (str[i] == '-')
 			negative *= (-1);
 		i++;

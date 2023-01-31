@@ -1,36 +1,53 @@
 #include "libft.h"
 
-char	*ft_strtrim(char const *s1, char const *set)
+static	char	*ft_replace(char *str, int i)
+{
+	while (str[i])
+	{
+		str[i] = str[i + 1];
+		i++;
+	}
+	return (str);
+}
+
+static	char	*ft_strcpy(char *cpy, char *src)
 {
 	int	i;
+
+	i = 0;
+	while (src[i])
+	{
+		cpy[i] = src[i];
+		i++;
+	}
+	cpy[i] = '\0';
+	return (cpy);
+}
+
+char	*ft_strtrim(char const *s1, char const *set)
+{
+	char	*cpy;
+	char	*str1;
 	int	j;
-	int	k;
-	int	nb;
-	char	*copy;
+	int	i;
 
 	i = 0;
 	j = 0;
-	k = 0;
-	if ((copy = (char *)malloc(sizeof(char) * ft_strlen(s1))) == NULL)
-		return (NULL);
-	if (s1 == NULL)
-		retun (NULL);
-	while (s1[i])
+	str1 = (char *)s1;
+	while (str1[i])
 	{
-		while (set[j])
-		{
-			nb = i;
-			if (s1[i] == set[j])
-				i++;
+		while (set[j] && str1[i] != set[j])
 			j++;
-		}
-		j = 0;
-		if (i == nb)
+		if (set[j] == '\0')
 		{
-			copy[k] = s1[i];
+			i++;
 		}
-		k++;
+		str1 = ft_replace(str1, i);
+		j = 0;
 	}
-	return (copy);
+	if ((cpy = malloc(ft_strlen(str1) + 1)) == NULL)
+		return (NULL);
+	cpy = ft_strcpy(cpy, str1);
+	return (cpy);
 }
 
