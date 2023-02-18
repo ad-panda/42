@@ -6,7 +6,7 @@
 /*   By: asimoes- <asimoes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 13:02:28 by asimoes-          #+#    #+#             */
-/*   Updated: 2023/01/30 13:36:02 by asimoes-         ###   ########.fr       */
+/*   Updated: 2023/02/10 16:20:57 by asimoes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,6 @@ static	void    *ft_memcpy2(void *dst, const void *src, size_t n)
 
 void    *ft_memmove(void *dst, const void *src, size_t len)
 {
-	//unsigned char	*str;
-	//unsigned char	*str2;
-
-	//str = (unsigned char *)dst;
-	//str2 = (unsigned char *)src;
-	//if (dst == NULL && src == NULL)
-	//	return (dst);
 	if (dst < src)
 		return (ft_memcpy(dst, src, len));
 	return (ft_memcpy2(dst, src, len));
