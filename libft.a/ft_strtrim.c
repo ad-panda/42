@@ -1,26 +1,17 @@
 #include "libft.h"
 
-static	char	*ft_replace(char *str, int i)
+static	char	*ft_strcpy_len(char *cpy, char *src, size_t i, size_t l)
 {
-	while (str[i])
-	{
-		str[i] = str[i + 1];
-		i++;
-	}
-	return (str);
-}
+	int	j;
 
-static	char	*ft_strcpy(char *cpy, char *src)
-{
-	int	i;
-
-	i = 0;
-	while (src[i])
+	j = 0;
+	while (i <= l)
 	{
-		cpy[i] = src[i];
+		cpy[j] = src[i];
 		i++;
+		j++;
 	}
-	cpy[i] = '\0';
+	cpy[j] = '\0';
 	return (cpy);
 }
 
@@ -29,25 +20,28 @@ char	*ft_strtrim(char const *s1, char const *set)
 	char	*cpy;
 	char	*str1;
 	int	j;
-	int	i;
+	size_t	i;
+	size_t	len;
+	size_t	l;
 
 	i = 0;
 	j = 0;
 	str1 = (char *)s1;
-	while (str1[i])
+	len = ft_strlen(str1);
+	l = len - 1; // correspond a l'indice max de str1 copier dans cpy;
+	while (set[j] == str1[l] && set[j])
 	{
-		while (set[j] && str1[i] != set[j])
-			j++;
-		if (set[j] == '\0')
-		{
-			i++;
-		}
-		str1 = ft_replace(str1, i);
-		j = 0;
+		j++;
+		l--;
 	}
-	if ((cpy = malloc(ft_strlen(str1) + 1)) == NULL)
+	while (set[j] == str1[i])
+	{
+		j++;
+		i++;
+	}
+	if ((cpy = malloc(len + 1 - j)) == NULL)
 		return (NULL);
-	cpy = ft_strcpy(cpy, str1);
+	cpy = ft_strcpy_len(cpy, str1, i, l);
 	return (cpy);
 }
 
