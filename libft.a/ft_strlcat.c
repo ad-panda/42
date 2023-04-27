@@ -11,15 +11,16 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 	str = (char *)src;
 	lendst = ft_strlen(dst);
 	lensrc = ft_strlen(str);
-	if (dstsize == 0)
-		return (lendst + lensrc);
-	if (dstsize < lendst)
-		return (lendst);
-	while(i < dstsize)
+	if (lendst < dstsize - 1 && dstsize > 0)
 	{
-		dst[lendst + i] = src[i];
-		i++;
+		while (str[i] && lendst + i < dstsize - 1)
+		{
+			dst[lendst + i] = str[i];
+			i++;
+		}
+		dst[lendst + i] = 0;
 	}
-	dst[lendst + i] = '\0';
+	if (lendst >= dstsize)
+		lendst = dstsize;
 	return(lendst + lensrc);
 }
