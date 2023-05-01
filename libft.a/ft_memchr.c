@@ -7,11 +7,13 @@ void    *ft_memchr(const void *s, int c, size_t n)
 
 	i = 0;
 	str = (char *)s;
-	while (str[i] != (char)c && i < n)
+	if (n == 0)
+		return (NULL);
+	while ((unsigned char)str[i] != (unsigned char)c)
 	{
-		if (str[i] == '\0' || i + 1 == n)
+		if (i >= n - 1)
 			return (NULL);
 		i++;
 	}
-	return (str + i);
+	return ((void *)str + i);
 }
