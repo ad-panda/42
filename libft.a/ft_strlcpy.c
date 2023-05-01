@@ -15,5 +15,5 @@ size_t    ft_strlcpy(char *dst, const char *src, size_t dstsize)
 		i++;
 	}
 	dst[dstsize - 1] = '\0';
-	return(lensrc);
+	return (lensrc);
 }
