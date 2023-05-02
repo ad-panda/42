@@ -38,6 +38,8 @@ static char	*ft_word(char *str, char charset)
 	i = 0;
 	len_word = ft_wordlen(str, charset);
 	word = (char *)malloc(len_word + 1);
+	if (!word)
+		return (NULL);
 	while (i < len_word)
 	{
 		word[i] = str[i];
@@ -45,6 +47,19 @@ static char	*ft_word(char *str, char charset)
 	}
 	word[i] = '\0';
 	return (word);
+}
+
+static void	ft_free_tab(char **strings)
+{
+	size_t	i;
+
+	i = 0;
+	while (strings[i])
+	{
+		free(strings[i]);
+		i++;
+	}
+	free(strings);
 }
 
 char	**ft_split(char const *s, char c)
@@ -58,7 +73,7 @@ char	**ft_split(char const *s, char c)
 	strings = (char **)malloc(sizeof(char *) * (ft_word_count((char *)s, c)
 				+ 1));
 	if (!s || !strings)
-		return (0);
+		return (NULL);
 	while (s[j] != '\0')
 	{
 		while (s[j] == c)
@@ -66,6 +81,8 @@ char	**ft_split(char const *s, char c)
 		if (s[j] != '\0')
 		{
 			strings[i] = ft_word((char *)&s[j], c);
+			if (!strings[i])
+				return (ft_free_tab(strings), NULL);
 			i++;
 		}
 		while (s[j] != '\0' && s[j] != c)
