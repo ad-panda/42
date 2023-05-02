@@ -1,47 +1,29 @@
 #include "libft.h"
 
-static	char	*ft_strcpy_len(char *cpy, char *src, size_t i, size_t l)
+char    *ft_strtrim(char const *s1, char const *set)
 {
-	int	j;
+    size_t    i;
+    size_t    l;
+    char    *str;
 
-	j = 0;
-	while (i <= l)
-	{
-		cpy[j] = src[i];
-		i++;
-		j++;
-	}
-	cpy[j] = '\0';
-	return (cpy);
+    if (!s1 && !set)
+        return (NULL);
+    i = 0;
+    l = ft_strlen(s1);
+    while (s1[i] && ft_strchr(set, s1[i]))
+        i++;
+    if (i == l)
+    {
+          if (!(str = ft_strdup("")))
+            return (NULL);
+        else
+            return (str);
+    }
+    while (s1[l - 1] && ft_strchr(set, s1[l - 1]) && l > i)
+        l--;
+    str = (char *)malloc(sizeof(char) * (l - i + 1));
+    if (!str)
+        return (NULL);
+    ft_strlcpy(str, &s1[i], l - i + 1);
+    return (str);
 }
-
-char	*ft_strtrim(char const *s1, char const *set)
-{
-	char	*cpy;
-	char	*str1;
-	int	j;
-	size_t	i;
-	size_t	len;
-	size_t	l;
-
-	i = 0;
-	j = 0;
-	str1 = (char *)s1;
-	len = ft_strlen(str1);
-	l = len - 1; // correspond a l'indice max de str1 copier dans cpy;
-	while (set[j] == str1[l] && set[j])
-	{
-		j++;
-		l--;
-	}
-	while (set[j] == str1[i])
-	{
-		j++;
-		i++;
-	}
-	if ((cpy = malloc(len + 1 - j)) == NULL)
-		return (NULL);
-	cpy = ft_strcpy_len(cpy, str1, i, l);
-	return (cpy);
-}
-
