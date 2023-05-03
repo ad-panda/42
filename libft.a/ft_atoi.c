@@ -6,39 +6,69 @@
 /*   By: asimoes- <asimoes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 17:29:22 by asimoes-          #+#    #+#             */
-/*   Updated: 2023/01/23 21:44:15 by asimoes-         ###   ########.fr       */
+/*   Updated: 2023/05/03 12:36:39 by asimoes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *str)
+static int	ft_isspace(char character)
 {
-	int	i;
-	int	negative;
-	int	nb;
+	if (character == ' ' || character == '\t' || character == '\n'
+		|| character == '\v' || character == '\f' || character == '\r')
+		return (1);
+	return (0);
+}
 
-	nb = 0;
-	negative = 1;
-	i = 0;
-	if (str[i] )
-	while ((str[i] >= 9 && str[i] <= 13) || str[i] == ' ')
+static int	ft_check_if_of(long long number, int neg_mult, size_t nb_length)
+{
+	if (!number)
+		return (0);
+	if (nb_length >= 20)
 	{
-		i++;
-	}
-	while (str[i] == 45 || str[i] == 43)
-	{
-		if (str[i+1] == 45 || str[i+1] == 43)
+		if (neg_mult == 1)
+			return (-1);
+		else
 			return (0);
-		if (str[i] == '-')
-			negative *= (-1);
-		i++;
 	}
-	while (str[i] >= '0' && str[i] <= '9')
+	if (neg_mult == 1)
 	{
-		nb *= 10;
-		nb += (str[i] - '0');
-		i++;
+		if ((unsigned long long)number >= __LONG_LONG_MAX__)
+			return (-1);
 	}
-	return (nb * negative);
+	else
+	{
+		if ((unsigned long long)number - 1 >= __LONG_LONG_MAX__)
+			return (0);
+	}
+	return (number * neg_mult);
+}
+
+int	ft_atoi(const char *nptr)
+{
+	long long		number;
+	int				neg_mult;
+	int				i;
+	size_t			nb_length;
+
+	i = 0;
+	number = 0;
+	neg_mult = 1;
+	nb_length = 0;
+	while (ft_isspace(nptr[i]) == 1)
+		i++;
+	if (nptr[i] == '+')
+		i++;
+	else if (nptr[i] == '-')
+	{
+		i++;
+		neg_mult = -1;
+	}
+	while (nptr[i] >= '0' && nptr[i] <= '9')
+	{
+		number = number * 10 + nptr[i++] - '0';
+		if (nptr[i - 1] != '0' || (nptr[i - 1] == '0' && number))
+			nb_length++;
+	}
+	return (ft_check_if_of(number, neg_mult, nb_length));
 }

@@ -6,57 +6,78 @@
 /*   By: asimoes- <asimoes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 21:41:53 by asimoes-          #+#    #+#             */
-/*   Updated: 2023/04/21 00:44:27 by asimoes-         ###   ########.fr       */
+/*   Updated: 2023/05/03 12:38:37 by asimoes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int ft_len_n(int n)
+static int	int_size(long n)
 {
-    int i;
+	int	size;
 
-    i = 1;
-    if (n == -2147483648)
-    {
-        i = 11;
-        return (i);
-    }
-    if (n < 0)
-    {
-        n = n * (-1);
-        i ++;
-    }
-    while (n >= 10)
-    {
-        n = n / 10;
-        i++;
-    }
-    return (i);
+	size = 0;
+	if (n < 0)
+	{
+		size++;
+		n = -1 * n;
+	}
+	while (n > 0)
+	{
+		n = n / 10;
+		size++;
+	}
+	return (size);
 }
 
-char    *ft_itoa(int n)
+static char	*ft_is_zero(void)
 {
-    char    *str;
-    int len;
+	char	*r_string;
 
-    len = ft_len_n(n);  
-    if ((str = malloc((len + 1) * sizeof(char))) == NULL)
-        return (NULL);
-    str[len--] = '\0';
-    if (n < 0)
-    {
-        str[0] = '-';
-        while (len > 0)
-        {
-            str[len--] = ((n % 10) * (-1)) + '0';
-            n = n / 10;
-        }
-    }
-    else while (len >= 0)
-        {
-            str[len--] = (n % 10) + '0';
-            n = n / 10;
-        }
-    return (str);
+	r_string = (char *) malloc (sizeof(char) * 2);
+	if (!r_string)
+		return (NULL);
+	r_string[0] = '0';
+	r_string[1] = '\0';
+	return (r_string);
+}
+
+static char	*ft_itoa_main(int n, char *r_string, long n_long, int nb_len)
+{
+	int	is_neg;
+
+	is_neg = 0;
+	if ((long)n < 0)
+	{
+		n_long = -1 * n_long;
+		is_neg = 1;
+	}
+	r_string[nb_len] = '\0';
+	nb_len--;
+	while (nb_len >= 0)
+	{
+		r_string[nb_len] = n_long % 10 + '0';
+		n_long = n_long / 10;
+		nb_len--;
+	}
+	if (is_neg)
+		r_string[0] = '-';
+	return (r_string);
+}
+
+char	*ft_itoa(int n)
+{
+	char	*r_string;
+	int		nb_len;
+	long	n_long;
+
+	n_long = (long)n;
+	nb_len = int_size(n_long);
+	if (n == 0)
+		return (ft_is_zero());
+	r_string = (char *) malloc (nb_len * sizeof(char) + 1);
+	if (!r_string)
+		return (NULL);
+	r_string = ft_itoa_main(n, r_string, n_long, nb_len);
+	return (r_string);
 }

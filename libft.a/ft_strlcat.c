@@ -1,11 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: asimoes- <asimoes-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/02 22:24:15 by asimoes-          #+#    #+#             */
+/*   Updated: 2023/05/03 00:30:00 by asimoes-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
 	unsigned int	i;
-	size_t	lendst;
-	size_t	lensrc;
-	char	*str;
+	size_t			lendst;
+	size_t			lensrc;
+	char			*str;
 
 	i = 0;
 	str = (char *)src;
@@ -22,5 +34,5 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 	}
 	if (lendst >= dstsize)
 		lendst = dstsize;
-	return(lendst + lensrc);
+	return (lendst + lensrc);
 }

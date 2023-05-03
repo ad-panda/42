@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: asimoes- <asimoes-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/02 22:19:46 by asimoes-          #+#    #+#             */
+/*   Updated: 2023/05/03 01:18:31 by asimoes-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
 static int	ft_word_count(char *str, char charset)
@@ -19,24 +31,18 @@ static int	ft_word_count(char *str, char charset)
 	return (word_count);
 }
 
-static int	ft_wordlen(char *str, char charset)
-{
-	int	i;
-
-	i = 0;
-	while (str[i] != '\0' && str[i] != charset)
-		i++;
-	return (i);
-}
-
 static char	*ft_word(char *str, char charset)
 {
 	int		len_word;
 	int		i;
+	int		j;
 	char	*word;
 
 	i = 0;
-	len_word = ft_wordlen(str, charset);
+	j = 0;
+	while (str[j] != '\0' && str[j] != charset)
+		j++;
+	len_word = j;
 	word = (char *)malloc(len_word + 1);
 	if (!word)
 		return (NULL);
@@ -62,6 +68,17 @@ static void	ft_free_tab(char **strings)
 	free(strings);
 }
 
+static char	**ft_allocation(char const *s, char c)
+{
+	char	**str;
+
+	str = (char **)malloc(sizeof(char *) * (ft_word_count((char *)s, c)
+				+ 1));
+	if (!s || !str)
+		return (NULL);
+	return (str);
+}
+
 char	**ft_split(char const *s, char c)
 {
 	char	**strings;
@@ -70,9 +87,8 @@ char	**ft_split(char const *s, char c)
 
 	i = 0;
 	j = 0;
-	strings = (char **)malloc(sizeof(char *) * (ft_word_count((char *)s, c)
-				+ 1));
-	if (!s || !strings)
+	strings = ft_allocation(s, c);
+	if (strings == NULL)
 		return (NULL);
 	while (s[j] != '\0')
 	{
@@ -91,4 +107,3 @@ char	**ft_split(char const *s, char c)
 	strings[i] = 0;
 	return (strings);
 }
-

@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: asimoes- <asimoes-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/02 21:54:30 by asimoes-          #+#    #+#             */
+/*   Updated: 2023/05/02 21:54:31 by asimoes-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-void    ft_putstr_fd(char *s, int fd)
+void	ft_putstr_fd(char *s, int fd)
 {
-    int len;
+	size_t	len;
 
-    len = ft_strlen(s);
-    write(fd, s, len);
+	len = ft_strlen(s);
+	write(fd, s, len);
 }
