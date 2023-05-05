@@ -6,23 +6,23 @@
 /*   By: asimoes- <asimoes-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 17:29:22 by asimoes-          #+#    #+#             */
-/*   Updated: 2023/05/03 12:36:39 by asimoes-         ###   ########.fr       */
+/*   Updated: 2023/05/05 12:05:13 by asimoes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_isspace(char character)
+static int	ft_isspace(char c)
 {
-	if (character == ' ' || character == '\t' || character == '\n'
-		|| character == '\v' || character == '\f' || character == '\r')
+	if (c == ' ' || c == '\t' || c == '\n'
+		|| c == '\v' || c == '\f' || c == '\r')
 		return (1);
 	return (0);
 }
 
-static int	ft_check_if_of(long long number, int neg_mult, size_t nb_length)
+static int	ft_check_if_of(long long nb, int neg_mult, size_t nb_length)
 {
-	if (!number)
+	if (!nb)
 		return (0);
 	if (nb_length >= 20)
 	{
@@ -33,15 +33,15 @@ static int	ft_check_if_of(long long number, int neg_mult, size_t nb_length)
 	}
 	if (neg_mult == 1)
 	{
-		if ((unsigned long long)number >= __LONG_LONG_MAX__)
+		if ((unsigned long long)nb >= __LONG_LONG_MAX__)
 			return (-1);
 	}
 	else
 	{
-		if ((unsigned long long)number - 1 >= __LONG_LONG_MAX__)
+		if ((unsigned long long)nb - 1 >= __LONG_LONG_MAX__)
 			return (0);
 	}
-	return (number * neg_mult);
+	return (nb * neg_mult);
 }
 
 int	ft_atoi(const char *nptr)
