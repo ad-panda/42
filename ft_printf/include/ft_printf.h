@@ -27,8 +27,8 @@ int		ft_print_hex(unsigned int num, const char format);
 int		ft_printpercent(void);
 
 void	ft_putstr(char *str);
-void	ft_put_ptr(uintptr_t num);
-int		ft_ptr_len(uintptr_t num);
+void	ft_put_ptr(unsigned long long num);
+int		ft_ptr_len(unsigned long long num);
 char	*ft_uitoa(unsigned int n);
 int		ft_num_len(unsigned	int num);
 void	ft_put_hex(unsigned int num, const char format);
